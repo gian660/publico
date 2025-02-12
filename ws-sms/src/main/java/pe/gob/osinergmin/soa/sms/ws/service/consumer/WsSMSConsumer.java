@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.gob.osinergmin.soa.sms.ws.schema.EnviarSMSReqParamTYPE;
 import pe.gob.osinergmin.soa.sms.ws.schema.EnviarSMSRespParamTYPE;
+import pe.gob.osinergmin.soa.sms.ws.schema.EnviarVoiceReqParamTYPE;
+import pe.gob.osinergmin.soa.sms.ws.schema.EnviarVoiceRespParamTYPE;
 import pe.gob.osinergmin.soa.sms.ws.schema.RecibeSMSReqParamTYPE;
 import pe.gob.osinergmin.soa.sms.ws.schema.RecibeSMSRespParamTYPE;
 import pe.gob.osinergmin.soa.sms.ws.schema.comun.consumidor.ConsumidorTYPE;
@@ -55,6 +57,18 @@ public class WsSMSConsumer implements WsSMSPort {
             return baseWsSMSConsumer.baseEnviarSMS(in, consumidor);
         } catch (ServiceException ex) {
             LOGGER.error(PropertiesUtils.APP_NAME + ex.getMessage(), ex);
+            throw ExceptionBuilder.buildException(SERVICE_NAME, operationName, ex);
+        }
+    }
+    
+    @Override
+    public EnviarVoiceRespParamTYPE voiceSMS(EnviarVoiceReqParamTYPE in, ConsumidorTYPE consumidor) throws ComunFaultMsg {
+        LOGGER.info(PropertiesUtils.APP_NAME + "Ejecutando voiceSMS...");
+        final String operationName = "voiceSMS";
+        try {
+            return baseWsSMSConsumer.baseEnviarVoice(in, consumidor);
+        } catch (ServiceException ex) {
+            LOGGER.error("Error en voiceSMS: " + ex.getMessage(), ex);
             throw ExceptionBuilder.buildException(SERVICE_NAME, operationName, ex);
         }
     }

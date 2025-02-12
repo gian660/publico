@@ -32,4 +32,23 @@
     </xsd:sequence>
   </xsd:complexType>
   <xsd:element name="recibeSMSRespParamTYPE" type="RecibeSMSRespParamTYPE"/>
+  
+<!-- INCIO voiceSMS -->
+  <xsd:complexType name="voiceSMSReqParamTYPE">
+    <xsd:sequence>
+      <xsd:element name="numeroTelefonico" type="xsd:string"/>
+      <xsd:element name="mensajeVoz" type="xsd:string"/>
+      <!-- Campos: "idioma", "voiceName", ... -->
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="voiceSMSReqParamTYPE" type="voiceSMSReqParamTYPE"/>
+
+  <xsd:complexType name="voiceSMSRespParamTYPE">
+    <xsd:sequence>
+      <xsd:element name="codigo" type="xsd:string"/>
+      <xsd:element name="mensaje" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="voiceSMSRespParamTYPE" type="voiceSMSRespParamTYPE"/>
+  <!-- FIN voiceSMS -->
 </xsd:schema>

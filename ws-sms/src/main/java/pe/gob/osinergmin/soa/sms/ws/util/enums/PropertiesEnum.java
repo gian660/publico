@@ -17,6 +17,7 @@ public enum PropertiesEnum {
     TEDEXIS_PASSPORT("tedexis_passport"),
     TEDEXIS_PASSWORD("tedexis_password"),
     INFOBIP_WS_URL("infobip_ws_url"),
+    INFOBIP_WS_URL_VOICE("infobip_ws_url_voice"),
     INFOBIP_WS_USER("infobip_ws_user"),
     INFOBIP_WS_PASSWORD("infobip_ws_password"),    	
     SCOP_ORDENSERVICIO_WSDL_URL("scop_ordenservicio_wsdl_url"),

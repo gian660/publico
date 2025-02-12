@@ -11,6 +11,8 @@ import pe.gob.osinergmin.soa.sms.thirdparty.m4wsintsr.consumer.M4WSIntSRConsumer
 import pe.gob.osinergmin.soa.sms.thirdparty.ordenpedido.consumer.OrdenPedidoConsumer;
 import pe.gob.osinergmin.soa.sms.ws.schema.EnviarSMSReqParamTYPE;
 import pe.gob.osinergmin.soa.sms.ws.schema.EnviarSMSRespParamTYPE;
+import pe.gob.osinergmin.soa.sms.ws.schema.EnviarVoiceReqParamTYPE;
+import pe.gob.osinergmin.soa.sms.ws.schema.EnviarVoiceRespParamTYPE;
 import pe.gob.osinergmin.soa.sms.ws.schema.RecibeSMSReqParamTYPE;
 import pe.gob.osinergmin.soa.sms.ws.schema.RecibeSMSRespParamTYPE;
 import pe.gob.osinergmin.soa.sms.ws.schema.comun.consumidor.ConsumidorTYPE;
@@ -149,6 +151,28 @@ public class BaseWsSMSConsumer {
         }else if(SMS_WS_PROVIDER.equals(Constantes.SMS_WS_PROVIDER_HOLACLIENTE)){
         	result = holaClienteConsumer.enviarSMS(in.getNumero(), in.getTexto());
         }
+        _result.setCodigo(result.toString());
+        _result.setMensaje(SMSErrorEnum.fromValue(result).getMessage());
+
+        return _result;
+    }
+    
+    public EnviarVoiceRespParamTYPE baseEnviarVoice(EnviarVoiceReqParamTYPE in, ConsumidorTYPE consumidor) throws ServiceException {
+        EnviarVoiceRespParamTYPE _result = new EnviarVoiceRespParamTYPE();
+
+        if (StringUtils.isEmpty(in.getNumero())) {
+            throw new ServiceException(SMSErrorEnum.ERROR_1000);
+        }
+        if (StringUtils.isEmpty(in.getMensajeVoz())) {
+            throw new ServiceException(SMSErrorEnum.ERROR_1001);
+        }
+
+        Integer result = null;
+        System.out.println("baseEnviarVoice - Enviando mensaje de voz");
+
+        // Llamar a Infobip para enviar el mensaje de voz
+        result = infobipConsumer.enviarVoice(in.getNumero(), in.getMensajeVoz());
+
         _result.setCodigo(result.toString());
         _result.setMensaje(SMSErrorEnum.fromValue(result).getMessage());
 

@@ -28,6 +28,15 @@
   <message name="ComunFaultMsg">
     <part name="falla" element="fault:falla"/>
   </message>
+  <!--INCIO voiceSMS -->
+  <message name="VoiceSMSRequestMsg">
+    <part name="in" element="wssms:voiceSMSReqParamTYPE"/>
+    <part name="consumidor" element="cons:consumidor"/>
+  </message>
+  <message name="VoiceSMSResponseMsg">
+    <part name="out" element="wssms:voiceSMSRespParamTYPE"/>
+  </message>
+    <!-- FIN voiceSMS -->
   <portType name="WsSMSPort">
     <operation name="enviarSMS">
       <input message="wssms:EnviarSMSRequestMsg"/>
@@ -39,6 +48,13 @@
       <output message="wssms:RecibeSMSResponseMsg"/>
       <fault message="wssms:ComunFaultMsg" name="falla"/>
     </operation>
+	<!--INCIO voiceSMS -->
+    <operation name="voiceSMS">
+      <input message="wssms:VoiceSMSRequestMsg"/>
+      <output message="wssms:VoiceSMSResponseMsg"/>
+      <fault message="wssms:ComunFaultMsg" name="falla"/>
+    </operation>
+    <!-- FIN voiceSMS -->
   </portType>
   <binding name="WsSMSPortSOAP11Binding" type="wssms:WsSMSPort">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -68,6 +84,21 @@
         <soap:fault name="falla" use="literal"/>
       </fault>
     </operation>
+    <!-- INICIO voiceSMS -->
+    <operation name="voiceSMS">
+      <soap:operation style="document" soapAction="http://soa.osinergmin.gob.pe/schema/wssms/voiceSMS"/>
+      <input>
+        <soap:body use="literal" parts="in"/>
+        <soap:header message="wssms:VoiceSMSRequestMsg" use="literal" part="consumidor"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="out"/>
+      </output>
+      <fault name="falla">
+        <soap:fault name="falla" use="literal"/>
+      </fault>
+    </operation>
+    <!-- FIN voiceSMS -->
   </binding>
 <!--   <binding name="WsSMSPortSOAP12Binding" type="wssms:WsSMSPort">
     <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>

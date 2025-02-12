@@ -35,4 +35,15 @@ public interface WsSMSPort {
         @WebParam(partName = "consumidor", name = "consumidor", targetNamespace = "http://soa.osinergmin.gob.pe/schema/comun/consumidor", header = true)
         pe.gob.osinergmin.soa.sms.ws.schema.comun.consumidor.ConsumidorTYPE consumidor
     ) throws ComunFaultMsg;
+    
+    @WebResult(name = "voiceSMSRespParamTYPE", targetNamespace = "http://soa.osinergmin.gob.pe/schema/wssms", partName = "out")
+    @WebMethod(operationName = "voiceSMS", action = "http://soa.osinergmin.gob.pe/schema/wssms/voiceSMS")
+    public pe.gob.osinergmin.soa.sms.ws.schema.EnviarVoiceRespParamTYPE voiceSMS(
+        @WebParam(partName = "in", name = "voiceSMSReqParamTYPE", targetNamespace = "http://soa.osinergmin.gob.pe/schema/wssms")
+        pe.gob.osinergmin.soa.sms.ws.schema.EnviarVoiceReqParamTYPE in,
+        @WebParam(partName = "consumidor", name = "consumidor", targetNamespace = "http://soa.osinergmin.gob.pe/schema/comun/consumidor", header = true)
+        pe.gob.osinergmin.soa.sms.ws.schema.comun.consumidor.ConsumidorTYPE consumidor
+    ) throws ComunFaultMsg;
+
+    
 }
