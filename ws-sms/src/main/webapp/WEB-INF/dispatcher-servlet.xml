@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cxf="http://cxf.apache.org/core"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+            http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+    
+    <context:component-scan base-package="pe.gob.osinergmin.soa.sms.thirdparty.infobip.consumer"/>
+    <context:component-scan base-package="pe.gob.osinergmin.soa.sms.ws.rest"/>
+    
+    <mvc:annotation-driven />
+    
+    <bean id="logInbound" class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+    <bean id="logOutbound" class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+    <bean id="mutiRefTransformingInterceptor" class="pe.gob.osinergmin.soa.sms.ws.service.interceptor.SoapTransformingInterceptor">
+        <property name="requestXslt" value="/WEB-INF/xslt/transSmsProviderToOsi.xslt"/>
+    </bean>
+    
+    <cxf:bus>
+        <cxf:inInterceptors>
+            <ref bean="mutiRefTransformingInterceptor"/>
+        </cxf:inInterceptors>
+		<!--
+		<cxf:outInterceptors>
+            <ref bean="logOutbound"/>
+        </cxf:outInterceptors>
+        <cxf:outFaultInterceptors>
+            <ref bean="logOutbound"/>
+        </cxf:outFaultInterceptors>
+        <cxf:inFaultInterceptors>
+            <ref bean="logInbound"/>
+        </cxf:inFaultInterceptors>
+        -->
+    </cxf:bus>
+    
+</beans>

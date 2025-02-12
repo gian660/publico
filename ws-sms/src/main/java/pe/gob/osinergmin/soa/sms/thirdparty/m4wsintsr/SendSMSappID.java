@@ -1,0 +1,177 @@
+
+package pe.gob.osinergmin.soa.sms.thirdparty.m4wsintsr;
+
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for anonymous complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType>
+ *   &lt;complexContent>
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *       &lt;sequence>
+ *         &lt;element name="passport" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="number" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="text" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="appID" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *       &lt;/sequence>
+ *     &lt;/restriction>
+ *   &lt;/complexContent>
+ * &lt;/complexType>
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "passport",
+    "password",
+    "number",
+    "text",
+    "appID"
+})
+@XmlRootElement(name = "sendSMSappID")
+public class SendSMSappID {
+
+    @XmlElementRef(name = "passport", namespace = "http://core.ws.m4.tedexis.com", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> passport;
+    @XmlElementRef(name = "password", namespace = "http://core.ws.m4.tedexis.com", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> password;
+    @XmlElementRef(name = "number", namespace = "http://core.ws.m4.tedexis.com", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> number;
+    @XmlElementRef(name = "text", namespace = "http://core.ws.m4.tedexis.com", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> text;
+    @XmlElementRef(name = "appID", namespace = "http://core.ws.m4.tedexis.com", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> appID;
+
+    /**
+     * Gets the value of the passport property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getPassport() {
+        return passport;
+    }
+
+    /**
+     * Sets the value of the passport property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setPassport(JAXBElement<String> value) {
+        this.passport = value;
+    }
+
+    /**
+     * Gets the value of the password property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getPassword() {
+        return password;
+    }
+
+    /**
+     * Sets the value of the password property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setPassword(JAXBElement<String> value) {
+        this.password = value;
+    }
+
+    /**
+     * Gets the value of the number property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getNumber() {
+        return number;
+    }
+
+    /**
+     * Sets the value of the number property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setNumber(JAXBElement<String> value) {
+        this.number = value;
+    }
+
+    /**
+     * Gets the value of the text property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getText() {
+        return text;
+    }
+
+    /**
+     * Sets the value of the text property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setText(JAXBElement<String> value) {
+        this.text = value;
+    }
+
+    /**
+     * Gets the value of the appID property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getAppID() {
+        return appID;
+    }
+
+    /**
+     * Sets the value of the appID property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setAppID(JAXBElement<String> value) {
+        this.appID = value;
+    }
+
+}

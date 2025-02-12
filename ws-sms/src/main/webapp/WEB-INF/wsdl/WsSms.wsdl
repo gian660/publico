@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="http://soa.osinergmin.gob.pe/schema/wssms" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+             xmlns:cons="http://soa.osinergmin.gob.pe/schema/comun/consumidor"
+             xmlns:fault="http://soa.osinergmin.gob.pe/schema/comun/fault"
+             xmlns:wssms="http://soa.osinergmin.gob.pe/schema/wssms">
+  <types>
+    <xsd:schema xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:cons="http://soa.osinergmin.gob.pe/schema/comun/consumidor" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://soa.osinergmin.gob.pe/schema/comun/consumidor" schemaLocation="../xsd/OSINERGMIN_Comun_Consumidor_v1.0.xsd" />
+    </xsd:schema>
+    <xsd:schema xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:fault="http://soa.osinergmin.gob.pe/schema/comun/fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://soa.osinergmin.gob.pe/schema/comun/fault" schemaLocation="../xsd/OSINERGMIN_Comun_Fault_v1.0.xsd" />
+    </xsd:schema>
+    <xsd:schema xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wssms="http://soa.osinergmin.gob.pe/schema/wssms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://soa.osinergmin.gob.pe/schema/wssms" schemaLocation="../xsd/WsSms.xsd" />
+    </xsd:schema>
+  </types>
+  <message name="EnviarSMSRequestMsg">
+    <part name="in" element="wssms:enviarSMSReqParamTYPE"/>
+    <part name="consumidor" element="cons:consumidor"/>
+  </message>
+  <message name="EnviarSMSResponseMsg">
+    <part name="out" element="wssms:enviarSMSRespParamTYPE"/>
+  </message>
+  <message name="ComunFaultMsg">
+    <part name="falla" element="fault:falla"/>
+  </message>
+  <portType name="WsSMSPort">
+    <operation name="enviarSMS">
+      <input message="wssms:EnviarSMSRequestMsg"/>
+      <output message="wssms:EnviarSMSResponseMsg"/>
+      <fault message="wssms:ComunFaultMsg" name="falla"/>
+    </operation>
+    <operation name="recibeSMS">
+      <input message="wssms:RecibeSMSRequestMsg"/>
+      <output message="wssms:RecibeSMSResponseMsg"/>
+      <fault message="wssms:ComunFaultMsg" name="falla"/>
+    </operation>
+  </portType>
+  <binding name="WsSMSPortSOAP11Binding" type="wssms:WsSMSPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="enviarSMS">
+      <soap:operation style="document" soapAction="http://soa.osinergmin.gob.pe/schema/wssms/enviarSMS"/>
+      <input>
+        <soap:body use="literal" parts="in"/>
+        <soap:header message="wssms:EnviarSMSRequestMsg" use="literal" part="consumidor"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="out"/>
+      </output>
+      <fault name="falla">
+        <soap:fault name="falla" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="recibeSMS">
+      <soap:operation style="document" soapAction="http://soa.osinergmin.gob.pe/schema/wssms/recibeSMS"/>
+      <input>
+        <soap:body use="literal" parts="in"/>
+        <soap:header message="wssms:RecibeSMSRequestMsg" use="literal" part="consumidor"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="out"/>
+      </output>
+      <fault name="falla">
+        <soap:fault name="falla" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+<!--   <binding name="WsSMSPortSOAP12Binding" type="wssms:WsSMSPort">
+    <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="enviarSMS">
+      <soap12:operation style="document" soapAction="http://soa.osinergmin.gob.pe/schema/wssms/enviarSMS"/>
+      <input>
+        <soap12:body use="literal" parts="in"/>
+        <soap12:header message="wssms:EnviarSMSRequestMsg" use="literal" part="consumidor"/>
+      </input>
+      <output>
+        <soap12:body use="literal" parts="out"/>
+      </output>
+      <fault name="falla">
+        <soap12:fault name="falla" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="recibeSMS">
+      <soap12:operation style="document" soapAction="http://soa.osinergmin.gob.pe/schema/wssms/recibeSMS"/>
+      <input>
+        <soap12:body use="literal" parts="in"/>
+        <soap12:header message="wssms:RecibeSMSRequestMsg" use="literal" part="consumidor"/>
+      </input>
+      <output>
+        <soap12:body use="literal" parts="out"/>
+      </output>
+      <fault name="falla">
+        <soap12:fault name="falla" use="literal"/>
+      </fault>
+    </operation>
+  </binding> -->
+  <message name="RecibeSMSRequestMsg">
+    <part name="in" element="wssms:recibeSMSReqParamTYPE"/>
+    <part name="consumidor" element="cons:consumidor"/>
+  </message>
+  <message name="RecibeSMSResponseMsg">
+    <part name="out" element="wssms:recibeSMSRespParamTYPE"/>
+  </message>
+  <service name="WsSMSService">
+    <port name="WsSMSPortSOAP11" binding="wssms:WsSMSPortSOAP11Binding">
+      <soap:address location="http://domain/ws-sms/services"/>
+    </port>
+    <!-- <port name="WsSMSPortSOAP12" binding="wssms:WsSMSPortSOAP12Binding">
+      <soap12:address location="http://domain/ws-sms/services"/>
+    </port> -->
+  </service>
+  <service name="WsSMSService11">
+    <port name="WsSMSPortSOAP11" binding="wssms:WsSMSPortSOAP11Binding">
+      <soap:address location="http://domain/ws-sms/services"/>
+    </port>
+    <!-- <port name="WsSMSPortSOAP12" binding="wssms:WsSMSPortSOAP12Binding">
+      <soap12:address location="http://domain/ws-sms/services"/>
+    </port> -->
+  </service>
+</definitions>

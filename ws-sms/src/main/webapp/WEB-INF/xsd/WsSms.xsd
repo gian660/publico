@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://soa.osinergmin.gob.pe/schema/wssms"
+            targetNamespace="http://soa.osinergmin.gob.pe/schema/wssms" elementFormDefault="qualified">
+  <xsd:complexType name="EnviarSMSReqParamTYPE">
+    <xsd:sequence>
+      <xsd:element name="numero" type="xsd:string"/>
+      <xsd:element name="texto" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="enviarSMSReqParamTYPE" type="EnviarSMSReqParamTYPE"/>
+  <xsd:complexType name="EnviarSMSRespParamTYPE">
+    <xsd:sequence>
+      <xsd:element name="codigo" type="xsd:string"/>
+      <xsd:element name="mensaje" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="enviarSMSRespParamTYPE" type="EnviarSMSRespParamTYPE"/>
+  <xsd:complexType name="RecibeSMSReqParamTYPE">
+    <xsd:sequence>
+      <xsd:element name="clave" type="xsd:string"/>
+      <xsd:element name="codigoPaisRem" type="xsd:string"/>
+      <xsd:element name="codAreaRem" type="xsd:string"/>
+      <xsd:element name="numRem" type="xsd:string"/>
+      <xsd:element name="mensaje" type="xsd:string"/>
+      <xsd:element name="idMensaje" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="recibeSMSReqParamTYPE" type="RecibeSMSReqParamTYPE"/>
+  <xsd:complexType name="RecibeSMSRespParamTYPE">
+    <xsd:sequence>
+      <xsd:element name="result" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="recibeSMSRespParamTYPE" type="RecibeSMSRespParamTYPE"/>
+</xsd:schema>

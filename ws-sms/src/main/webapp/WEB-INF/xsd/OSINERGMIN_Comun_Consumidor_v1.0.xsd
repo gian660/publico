@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" 
+targetNamespace="http://soa.osinergmin.gob.pe/schema/comun/consumidor" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cos="http://soa.osinergmin.gob.pe/schema/comun/consumidor" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <element name="consumidor" type="cos:ConsumidorTYPE"/>
+  <complexType name="ConsumidorTYPE">
+    <sequence>
+      <!-- sigla de la organizacion duena del consumidor del servicio -->
+      <element minOccurs="1" name="organizacion" type="cos:OrganizacionTYPE"/>
+      <element minOccurs="1" name="canal" type="cos:CanalConsumoTYPE"/>
+      <!-- ID de ubicación del cliente del servicio -->
+      <element minOccurs="0" name="ubicacionLocalId" type="xsd:string"/>
+      <!-- IP -->
+      <element minOccurs="0" name="idTerminal" type="xsd:string"/>
+      <element minOccurs="0" name="fecha" type="xsd:date"/>
+      <element minOccurs="0" name="hora" type="xsd:time"/>
+    </sequence>
+  </complexType>
+  <simpleType name="CanalConsumoTYPE">
+    <restriction base="xsd:string">
+      <enumeration value="MOVIL"/>
+      <enumeration value="PORTAL"/>
+      <enumeration value="WEB"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="OrganizacionTYPE">
+    <restriction base="xsd:string">
+      <enumeration value="GART"/>
+      <enumeration value="GFHL"/>
+      <enumeration value="GFGN"/>
+      <enumeration value="GFE"/>
+      <enumeration value="GFM"/>
+      <enumeration value="OC"/>
+      <enumeration value="COR"/>
+      <enumeration value="STOR"/>
+      <enumeration value="OS"/>
+      <enumeration value="OEE"/>
+      <enumeration value="EXTERNO"/>
+    </restriction>
+  </simpleType>
+</schema>

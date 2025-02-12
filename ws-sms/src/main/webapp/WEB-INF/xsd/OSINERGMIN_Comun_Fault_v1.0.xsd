@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://soa.osinergmin.gob.pe/schema/comun/fault" version="1.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:falla="http://soa.osinergmin.gob.pe/schema/comun/fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <complexType name="GenericoTYPE">
+    <complexContent mixed="true">
+      <restriction base="xsd:anyType">
+        <sequence>
+          <any maxOccurs="unbounded" minOccurs="0" processContents="skip"/>
+        </sequence>
+      </restriction>
+    </complexContent>
+  </complexType>
+  <!-- Componente del Middleware SOA donde reside el servicio que origina la excepcion -->
+  <simpleType name="ComponenteMiddlewareTYPE">
+    <restriction base="xsd:string">
+      <enumeration value="BPEL"/>
+      <!-- Motor de orquestacion BPEL -->
+      <enumeration value="APS"/>
+      <!-- servidor de aplicaciones -->
+      <enumeration value="BPM"/>
+      <!-- Motor de orquestacion BPM -->
+      <enumeration value="ESB"/>
+            <!-- Motor de Orquestacion de Mensajes Enterprise Service Bus (ESB) -->
+    </restriction>
+  </simpleType>
+  <element name="falla" type="falla:OsinergminFaultTYPE"/>
+  <complexType name="OsinergminFaultTYPE">
+    <sequence>
+      <element name="componenteMiddleware" type="falla:ComponenteMiddlewareTYPE"/>
+      <element name="nivel" type="xsd:string"/>
+      <element name="idServicio" type="xsd:string"/>
+      <element name="operacion" type="xsd:string"/>
+      <element name="codigoError" type="xsd:string"/>
+      <element name="descripcionError" type="xsd:string"/>
+      <element name="mensajeEntrada" nillable="true" type="falla:GenericoTYPE"/>
+      <element name="mensajeSalida" nillable="true" type="falla:GenericoTYPE"/>
+      <element name="inicioEjecucion" type="xsd:dateTime"/>
+      <element name="finEjecucion" type="xsd:dateTime"/>
+      <element name="idTransaccion" type="xsd:string"/>
+      <element name="tipoError" type="falla:TipoErrorTYPE"/>
+      <element name="nivelCriticidad" type="falla:NivelCriticidadTYPE"/>
+    </sequence>
+  </complexType>
+  <element name="osinergminFaultResponse" type="falla:OsinergminFaultResponseTYPE"/>
+  <complexType name="OsinergminFaultResponseTYPE">
+    <sequence>
+      <element name="falla" type="falla:OsinergminFaultTYPE"/>
+    </sequence>
+  </complexType>
+  <simpleType name="TipoErrorTYPE">
+    <restriction base="xsd:string">
+      <enumeration value="NEGOCIO"/>
+      <enumeration value="TECNICO"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="NivelCriticidadTYPE">
+    <restriction base="xsd:string">
+      <enumeration value="BAJO"/>
+      <enumeration value="MEDIO"/>
+      <enumeration value="ALTO"/>
+      <enumeration value="SEVERO"/>
+    </restriction>
+  </simpleType>
+</schema>

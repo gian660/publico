@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd" default-lazy-init="true">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+    
+    <context:annotation-config/>
+    
+    <context:component-scan base-package="pe.gob.osinergmin.soa.sms.ws.service"/>
+    <context:component-scan base-package="pe.gob.osinergmin.soa.sms.thirdparty.m4wsintsr.consumer"/>
+    <context:component-scan base-package="pe.gob.osinergmin.soa.sms.thirdparty.ordenpedido.consumer"/>
+    
+    <!-- <jaxws:endpoint id="WsSMSService" implementor="#wsSMSConsumer" address="/WsSms"></jaxws:endpoint> -->
+    
+    <jaxws:endpoint id="WsSMSService11" implementor="#wsSMSConsumer11" address="/WsSms11"></jaxws:endpoint>
+    
+    <!--<jaxws:endpoint id="SmsRestController" implementor="#smsRestController" address="/"></jaxws:endpoint>-->
+    
+    <!--<jaxrs:server id="smsRestService" address="/">-->
+    <!--<jaxrs:server id="smsRestService" address="/">
+		<jaxrs:serviceBeans>
+			<ref bean="smsRestController" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean="jsonProvider" />
+		</jaxrs:providers>
+	</jaxrs:server>-->
+<!--  
+    <bean id="smsRestController" class="pe.gob.osinergmin.soa.sms.ws.rest.controller.SmsRestController"></bean>
+    
+	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"></bean>
+-->
+</beans>

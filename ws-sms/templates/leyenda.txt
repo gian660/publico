@@ -1,0 +1,15 @@
+${sms_ws_provider}               : Proveedor de los servicios web de SMS. I: Infobip, T: Tedexis
+
+${infobip_ws_url}                : URL del servicio web de Infobip para env�o de SMS a un �nico destinatario
+${infobip_ws_user}               : Usuario a utilizar para los servicios web de Infobip
+${infobip_ws_password}           : Contrase�a a utilizar para los servicios web de Infobip
+
+${dominio_ws_scop_ordenservicio} : Dominio donde se encuetra desplegado el Web Service de Ordenes de Pedido de SCOP
+                                   (Ejemplo: scopws.osinergmin.gob.pe).
+${host_ws_sargop}                : Host donde se encuentra desplegado el SOAP de Sargop (Ejemplo: 11.160.124.103).
+${port_ws_sargop}                : Puerto donde se encuentra desplegado el SOAP de Sargop (Ejemplo: 7005).
+${host_ws_precios}               : Host donde se encuentra desplegado el SOAP de Precios (Ejemplo: 11.160.124.103).
+${port_ws_precios}               : Puerto donde se encuentra desplegado el SOAP de Precios (Ejemplo: 7005).
+${protocolo_ws_sargop}			 : Protocolo http o https según sea el caso.
+${dominio_ws_scop_ordenservicio_desa} : Dominio donde se encuetra desplegado el Web Service de Ordenes de Pedido de SCOP de desarrollo
+                                   (Ejemplo: scopwsdesa.osinergmin.gob.pe).
